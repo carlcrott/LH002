@@ -16,6 +16,8 @@ Content of this repository:
 /hardware            # general shardware sketches
 /Vendors             # vendor specific models
 
+Parts price list:
+https://docs.google.com/spreadsheet/ccc?key=0AtOqyz8P_fJ0dFN1TDdCMlgySFBHTHA3clZBUkdCNnc&hl=en_US#gid=0
 
 License:
 Creative Commons Attribution-ShareAlike 3.0 Unported License. 
