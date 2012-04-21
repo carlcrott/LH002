@@ -1,0 +1,47 @@
+Detailed Project Description (Word or PDF Format)
+Not to exceed 10 pages. Project description should include 
+(1) an introduction/background that describes the problem or need being addressed and relevant precedents;
+- LH is the basis of the bio lab
+- Industry standard machines cost $60,000
+- All the software is locked down ( ask John S. )
+- Open source designs would allow the individual labs to tweak the design to facilitate additional through put
+- labs interested in custom functionality could pay up for the designs and inegration ... then we can distrubute the new hardware
+- Automation in this manner is a step in the direction of: "http://marciovm.com/i-want-a-github-of-science/index.html"
+
+(2)specific aims for the project;
+- Open source the designs
+- Create massive liquid handling capability in comparison to any additional throughputs
+- Work to be specifically centered around regenrative medicines
+- Create an API / UI based around a local server ( thus cutting any Operating System dependency )
+- API would allow for liquid handling to be run remotely by simply connecting to a website
+- FURTHER this would allow for any downtime on the lab to be utilized as available machine time
+
+
+(3)strategy and methodology to be applied; 
+- Ruby on rails server
+- One individual is capable of completeing this beginning to end ... however I'd love assistance from an Electrical Engineer.
+- Contact local Biotechs and work towards dialing in their specific needs.
+- Featured in industry blogs ( Already mentioned on Derek Lowe's blog )
+
+
+(4)outcomes and potential impact of the work;
+- Liquid handling could be run remotely
+- Hugely disruptive to the established existing Liquid handling structure
+- Acts as the basic platform for all other lab processes to be connected and automated
+- removing scientists from the hands on work ( and thus removing all the associated reproduceability issues associated with current hand written scientific protocols ... copy the code once ... and run it
+
+
+(5)timeline and intermediate milestones for the project. Please include references to relevant literature and also provide any unpublished data that you have gathered in support of your project.
+
+- Dialing in of the 5uL accuracy of the peristaltic pump
+- Creating assembly instructions for the machine
+- Creating the UI and backend server to run the system
+- Creation of the API allowing for even greater parallelization of the liquid handling process.
+- The possibility of treating the lab like a computer tower.  Where the only need for a human to be involved in the process is when maintenance is needed.
+
+
+
+
+
+
+

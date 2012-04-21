@@ -1,0 +1,95 @@
+
+# This is in google DOCS!
+
+
+
+///////////////////////////// ORDER //////////////////////////////////
+
+
+--- LH Core Assembly ---
+        3x uprights
+
+$160    Celesco SP1 linear string encoder 
+http://www.celesco.com/_datasheets/sp1.pdf
+
+        2x stepper motors w rotary encoder ( full step )
+
+
+--- Pump Assembly ---
+compression rod bearings (x6)
+  https://www.grainger.com/Grainger/wwg/search.shtml?searchQuery=1ZEK2&op=search&Ntt=1ZEK2&N=0&sst=subset&typeaheadSearch.x=24&typeaheadSearch.y=12
+1/8" x 4" carbide spindle compression rods
+  http://www.mcmaster.com/#8788A127
+1/4" x 6" stainless spindle drive shaft
+  http://www.mcmaster.com/#1162K65
+pump driver shaft bearings (x2)
+  https://www.grainger.com/Grainger/wwg/search.shtml?searchQuery=1ZEL2&op=search&Ntt=1ZEL2&N=0&sst=subset&typeaheadSearch.x=40&typeaheadSearch.y=3
+compression housing
+  T16311
+  http://www.metalsdepot.com/products/hrsteel2.phtml?page=rttube&LimAcc=$LimAcc
+pump stepper
+  23Y306D-LW8-400S
+  http://www.anaheimautomation.com/products/stepper/stepper-motor-item.php?sID=13&pt=i&tID=75&cID=19
+pump driver
+  http://www.geckodrive.com/g201x-p-32.html
+  http://www.geckodrive.com/ark-2/support.html?pid=91&id=93
+1/4" to 1/4" co-linear driver shaft coupling
+  http://www.dumpstercnc.com/couplers.html
+tygon tubing
+  http://www.amazon.com/gp/product/B000FN12ZO
+
+
+--- Stage Assembly ---
+stage guide rods
+  http://www.mcmaster.com/#6516K24
+linear bearing
+  http://www.mcmaster.com/#6676K61
+1/4" ACM threaded drive rod
+  http://www.mcmaster.com/#93410A606
+corresponding flange nut
+  http://www.mcmaster.com/#95072A881
+co-linear coupling 
+  http://www.mcmaster.com/#2424K11
+opto sensors
+  http://search.digikey.com/scripts/DkSearch/dksus.dll?Detail&name=365-1265-ND
+microplate actuator stepper
+  http://www.kelinginc.net/NEMA17Motor.html
+microplate actuator driver
+  http://www.sparkfun.com/products/10267
+
+
+--- Structural ---
+threaded rod
+  http://www.mcmaster.com/#98805A031
+
+--- Medical ---
+microplate
+  http://cgi.ebay.com/ws/eBayISAPI.dll?ViewItem&item=290558752786&ssPageName=STRK:MEWNX:IT
+micro pipette tips
+  http://bit.ly/g4OPam
+  
+
+--- Other ---
+power supply
+  KL-350-36 36V/9.7A
+  http://www.kelinginc.net/SwitchingPowerSupply.html
+arduino mega
+  http://www.sparkfun.com/products/9949
+arduino ethernet shield
+  http://www.sparkfun.com/products/9026
+breadboard
+  http://www.sparkfun.com/products/9567
+  
+  
+
+///////////////////////////  ALTERNATE SUPPLY WITH UPFRONT PRICING /////////////////////////////
+http://www.makergear.com/products/motors
+http://www.kysanelectronics.com/Products/Catsub.php?recordID=4
+http://www.applied-motion.com/
+http://catalog.orientalmotor.com/
+http://www.anaheimautomation.com/
+http://www.phidgets.com/products.php?category=23&product_id=3313
+
+
+
+

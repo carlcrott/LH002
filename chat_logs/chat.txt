@@ -1,0 +1,327 @@
+============================= #ubuntu-arm ======================
+
+<delinquentme> so beagle boards run ubuntu ... how does one take a beagleboard and begin putting specific code on it? is it a USB connection?
+<delinquentme> and its run in the linux environment right?
+<scientes> delinquentme, yeah it has a RW sd card
+<scientes> delinquentme, but binaries have to be compiled for ARM, x86 binaries wont run
+<delinquentme> and this can be written in any language that can compile to ARM?
+<scientes> correct
+<scientes> or any interpreted language, that has interpreter support on ARM
+<delinquentme> and how about the operation ... that code simply polls over and over ?
+<scientes> and to be apecific armv7, which is what ubuntu targets
+<scientes> delinquentme, linux is "tickless"
+<delinquentme> its running *inside* the ubuntu operating system right? much like any language I run on my laptop ubuntu system
+<scientes> so it only wakes up to meet the next deadline, if it doesn't get an interrupt
+<scientes> yes it is the same ubuntu you run on your laptop, but recompiled for arm
+<scientes> debian GNU/Linux did most of the porting work/troubleshooting
+<delinquentme> and the code would be automatically read from the SD card?
+<scientes> but armv7 hardfloat transition has been helped by ubuntu
+<scientes> delinquentme, its just ext4 filesystem like you use on your hard drive
+<scientes> so it has files just the same, and with the same layout
+<scientes> delinquentme, you can actually run the beagleboard software on your laptop, using qemu-arm
+<scientes> or qemu-arm-static
+<delinquentme> so If i've got a desktop which connects to the beagleboard via ethernet ... and I want the beagle to issue machine commands to MCs that branch off of it
+<scientes> " machine commands to MCs that branch off of it"
+<scientes> i have no idea what you are saying here
+<delinquentme> the beagle runs whatever compiled arm and would then issue commands via that beagleboard software to those branch MCs
+<scientes> you can run all the same server software on e arm that you can run on x86
+<scientes> postfix, dovecot, postgresql, etc
+<scientes> now, the beagleboard is not the fastest arm board
+<delinquentme> basically the beagle controlling a number of attached MCs
+<scientes> what is a MC?
+<delinquentme> microcontroller 
+<scientes> specifically.....?
+<delinquentme>  ( sorry ) but yeah I'm trying to use the beagle to run steppers and the like
+<delinquentme> been looking at this one : http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATA_BRIEF/DM00037955.pdf
+<delinquentme> ~ 13 of those 
+* himamura (~himamura@122.1.9.24) has joined #ubuntu-arm
+<scientes> well that has yet another arm cpu inside of it
+<scientes> however it has too little ram and flash to run linux
+<delinquentme> oh yeah im not trying to run linux on those
+<delinquentme> those are what controls the steppers and the sensors etc
+<delinquentme> which then geed information back to the beagle
+<delinquentme> geed = feed*
+<scientes> is that black on the bottom audio?
+<scientes> and the top usb is just the power (5v)?
+<scientes> "one audio DAC" yeah, audio
+* ikepanhc has quit (Quit: Leaving.)
+<delinquentme> i think theres also a 5v in
+<scientes> seems to me that you use the "SWD" to communicate to it
+<scientes> "digital accelerometer and digital
+<scientes> microphone, one audio DAC with integrated class
+<scientes> D speaker driver, LEDs and push buttons and an
+<scientes> USB OTG micro-AB connector.
+<scientes> "
+<scientes> so i guess that is what it does
+<delinquentme> how to check if it can run communications over the micro usb
+<scientes> well since it says that all that is needed, it probably can
+<scientes> what do you want to do with it?
+<delinquentme> make a liquid handling robot
+<delinquentme> it has a number of modular cores
+<scientes> that thing seems to be audio-oriented
+<scientes> microphone and mono audio out
+<delinquentme> yeah I'm not really sure how the MC industry works
+<scientes> "digital microsoft" (does that mean it has a ADC ?)
+<delinquentme> like it can send signals and thats all I really need
+<delinquentme> i could probably go much simpler TBH
+<scientes> gcc supports compiling firmware IIRC
+<scientes> its the arm-non-gnueabi target for armv5+
+<scientes> *none
+<delinquentme> but I dont have the capability to design printed circuit boards ... so i need to buy something thats already assembled
+<scientes> and it only has one usable button
+<delinquentme> so yeah just write come C code .. compile it with GCC stick it on a MC like that and let it poll for commands from the beagle
+<delinquentme> yeah I don't really see myself using anything other than a reset button
+<scientes> well, event-based would sure be nicer
+<scientes> delinquentme, you can do that without any MC
+<scientes> you can do that with a seial port
+<scientes> or even a usb keyboard/mouse
+<delinquentme> well for programming it I can attach it however
+<scientes> but yeah that board is designed for audio uses, it doesn't seem applicable for you
+<delinquentme> how does one go about finding a good board for an application?
+<scientes> all the IC vendors have huge lists
+<delinquentme> ( i'm kind of expecting there to be a tool like new egg where there are drop downs and I select the chips and things I want on it
+<scientes> freescale, marvell, broadcom
+<scientes> newark
+<delinquentme> and these are all programmed effectively the same way?
+<scientes> well im still not sure what youwant/are trying to do
+<scientes> arduino is pretty hot these days
+<delinquentme> true but they're also super costly
+<scientes> so is the beagle board
+<delinquentme> ahh yeah that might help :D  .. I've got 2 steppers, 1 linear string pot, 1 linear actuator and 2 physical switches
+<scientes> compared to, like, the rasberri pi
+* AceLan (~Chia-Lin@61-221-51-174.HINET-IP.hinet.net) has joined #ubuntu-arm
+<scientes> delinquentme, how about this: http://www.st.com/stonline/stappl/productcatalog/app?page=productSelectorPage
+<delinquentme> oooooo 
+<scientes> http://www.freescale.com/webapp/sps/site/application.jsp?code=APLSTEMOT
+<delinquentme> DSC ?
+<delinquentme> Digital Signal Controller
+<delinquentme> actually I should totally be able to email customer support @ these places and just be like
+<delinquentme> "this is what I need"
+<delinquentme> does u have?
+<delinquentme> also! 
+<delinquentme> these are all chips .. is there a name used for the units when they're already attached to a board?
+<scientes> yeah ive come across that prob too
+<scientes> i dont really have an answer for you
+<delinquentme> haha im glad im not nuts :D
+<delinquentme> scientes, what do you do with all this coolness
+<delinquentme> specifically ubuntu arm chips?
+* cooloney (~roc@222.65.185.102) has joined #ubuntu-arm
+<scientes> well i actually dont have a armv7 comp yet
+<scientes> i only have the sheevaplug
+<scientes> which is armv5, running debian
+<scientes> but i really want a armv7, or better yet armv8 + quad core
+* scientes wants to experiment with big.LITTLE too
+<delinquentme> OOo the sheevaplug
+<delinquentme> thats like mischief no?
+<scientes> its kinda old now
+<delinquentme> is this like PHD research scientes ?
+<delinquentme> you can basically hook that sheevaplug up to something and just let it sniff away at wireless packets
+<scientes> the one i have doesn't have wifi
+<scientes> but considering its size and power consumption that sort of use would certainly be feasable
+<scientes> and a good fit for the device
+<scientes> it also has gigabit ethernet, so you could access it remotely at high speed
+
+
+
+
+============================= ##hplusroadmap ======================
+http://en.wikipedia.org/wiki/List_of_single-board_computers
+
+
+
+
+<strangewarp> delinquentme: No, but I've built electronic music gizmos from other people's schematics.
+<delinquentme> ever program a beagleboard?
+<kanzure> why are you asking?
+<strangewarp> Nope, just ATMEGAs..
+<delinquentme> or written code for MCs
+<kanzure> i think there are other people you should ask for beagleboard info
+<strangewarp> I've done a bit of Wiring but it was for a dumb project that I put on hold
+<strangewarp> Yeah, I'm probably not the best person to ask :p
+<kanzure> i mean, i don't see why you are asking about beagleboard to strangewarp specifically
+<delinquentme> whats the difference between these chips
+<delinquentme> i mean at a ligh level
+<delinquentme> AVR ARMs
+<kanzure> atmega is a microcontroller and dev board probably
+<delinquentme> ATMEGA?
+* sylph_mako (~mako@118-93-18-64.dsl.dyn.ihug.co.nz) has joined ##hplusroadmap
+<kanzure> beagleboard is a small computer with "motherboard"
+<kanzure> http://en.wikipedia.org/wiki/Beagleboard
+<strangewarp> ATMEGAs are what the Arduino is based upon, and as I understand it, they're particularly user-friendly. I've only loaded my own code onto ATMEGAs embedded in Arduinos though
+* klafka (~klafka@c-67-174-253-229.hsd1.ca.comcast.net) has joined ##hplusroadmap
+<kanzure> hi klafka
+<strangewarp> If you're loading code onto standalone ATMEGA chips, you have to use a programmer like this doodad: http://www.sparkfun.com/products/9825
+<strangewarp> And I think it requires a small custom circuit in addition, as well
+* strangewarp past the boundaries of his knowledge now
+<delinquentme> yeah so you've got that option in arduinos
+<delinquentme> to write either arduino code .. and let the arduino interpreter run it or flash your own code 
+<delinquentme> whatever compiled binary right?
+<strangewarp> I'm pretty sure there's an implementation of C for certain ATMEGA chips, or at least I heard about it in passing
+<strangewarp> Let's see.. if you're uploading to a standalone, you need to send it a hex file, using WinAVR or somesuch equivalent program
+<strangewarp> I am inexperienced in that area, alas
+<delinquentme> ok more:
+<strangewarp> There are tutorials though, they make use of that Sparkfun programmer doodad
+<delinquentme> what about panda boards .. the website says for mobile development ... this just means its a low power platform right?
+<delinquentme> you can plug it into a wall and you can run whatever it is you want on it
+<strangewarp> alas, you've got to ask someone else about those
+<klafka> HEY
+* ThomasEgi has quit (Remote host closed the connection)
+<nmz787> delinquentme: ATMEGA chips power Arduino dev boards, they are of the AVR processor architecture, ATMEGA chips also have peripheral electronics on-chip, like for doing SPI and RS232 comms
+<nmz787> delinquentme: beagleboard and pandaboard are based on TI's OMAP processor line
+<nmz787> delinquentme: which encompass an ARM processor core, as well as a TI DSP processor core, as well as a multitude of varying peripherals, including audio, video decoders and encoders
+<delinquentme> peripherals!
+<delinquentme> ive been trying to figure out how to do a search for processor + board
+<delinquentme> not just processor
+<nmz787> DSPs have very cool abilities such as single instruction, multiple data
+<nmz787> which is why they're called DSPs, because they can process a shit ton of data with few instructions
+<delinquentme> digital signal controller
+<delinquentme> yeah just read about those
+<nmz787> basically the data pipeline is bigger for the amount of code that controls it
+<nmz787> what do you mean for processor + board?
+<delinquentme> like I dont want to search for chips
+<nmz787> what are you looking for?
+<delinquentme> i want to search for a board
+<delinquentme> im not really sure quite yet like should it be based around the core processor on the board?
+<nmz787> with what characteristics?
+<nmz787> it depends what architecture you want to work with
+<nmz787> you can do a lot with FPGAs and CPLDs
+<nmz787> you can actually program processors into those
+* SDr (SDr@unaffiliated/sdr) has joined ##hplusroadmap
+<nmz787> or you can make them do very straightforward things, where your data just flows through the manipulation, rather than being piped around a processor's architecture with instructions
+<delinquentme> lol yeah with HDLs right?
+<nmz787> high density lipoproteins?
+<nmz787> hardware def lang?
+<delinquentme> hardware description languages
+<nmz787> yeah that's one way, verilog is the best i've heard
+<nmz787> if you want to go FPGA/CPLD route
+<nmz787>  but if you go that route, you'd better set aside a year of time to learn and get your feet wet
+<delinquentme> yeah I think thats not what im after
+<delinquentme> at last count I need 2 steppers 1 linear actuator a string pot and a switch
+<delinquentme> so like from what I know
+<delinquentme> that could be a SUPER simple MC
+<delinquentme> ( I asked around and some electronics dude forwarded one that seems like its for audio processing to me )
+<nmz787> beagleboard, beaglebone, pandaboard, gumstix, raspberry pi all have pretty decent communities if you need something with that much power
+<delinquentme> http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATA_BRIEF/DM00037955.pdf
+<nmz787> dont use ST
+<delinquentme> for the main board I do
+<nmz787> for MCs they have terrible docs
+<delinquentme> and im wrapping my head around how to program those
+<delinquentme> haha
+<nmz787> and also closed source programming toolchains
+<delinquentme> oddly enough I was thinking that that sheet was rather sparse
+<nmz787> you can compile C to AVR hex with gcc toolchain
+<nmz787> same with TI's MSP430
+<delinquentme> so how do I find the right board for running those peripherals
+<nmz787> i like the parallax propeller lately
+<nmz787> it can def do all what you just said you need
+<nmz787> its cheap, as easy as arduino
+<nmz787> and has great docs and community with large repo of prior art/code
+* sdr__ (SDr@cpc10-dals18-2-0-cust809.hari.cable.virginmedia.com) has joined ##hplusroadmap
+<nmz787> FYI
+<nmz787> http://en.wikipedia.org/wiki/List_of_single-board_computers
+<katsmeow-afk> how do you know which cpu is active at any time?
+<nmz787> you program it
+* augur (~augur@c-69-250-19-178.hsd1.md.comcast.net) has joined ##hplusroadmap
+* SDr has quit (Disconnected by services)
+* sdr__ is now known as Sdr
+* Sdr is now known as SDr
+<nmz787> on startup only one is active, but then you dish out programs to the others
+<katsmeow-afk> yeas, you have 8 cores, how do you know from outside the chip, which is active?
+<nmz787> all cores can access any of the 32 gpio pins at the same time, so if you tell core 0 to toggle I/O 1, then you look at I/O 1 with an o-scope to tell its active
+<delinquentme> can panda boards be used for whatever?
+<nmz787> i'm not really sure that answers your question tho
+<delinquentme> like i see no reason why you could *only* use it for mobile dev
+<nmz787> delinquentme: yea
+<delinquentme> ( even though thats what the website says )
+<delinquentme> but it would be cheaper to buy something more purpose-built
+<katsmeow-afk> it doesn't, really, i wanted to mux all 32gpio pins dependng on which cpu was active at the time
+<delinquentme> but yeah I've got 1 main board and 12 subsequent MCs which need to control the previous sensors etc
+<nmz787> for what you mentioned earlier, steppers and whatnot, you dont NEED pandaboard or anything in that class
+<nmz787> ahh, well you can sync the cores pretty easily
+<delinquentme> nah but I need something to control 12 of X (smaller micro ) which controls the sets of steppers and whatnot
+<nmz787> propeller is 8 cores in 1
+<nmz787> so get two of them, and you've got 16 cores
+<katsmeow-afk> with 4 io pins per cpu
+<nmz787> pandaboard is good for mobile dev because it has bluetooth and wifi onboard
+<nmz787> that's all
+<nmz787> like i said, on the propeller each core has access to all 32 io pins, so you could sync the cores, and just program it so they don't step on each others feet
+<delinquentme> so parallax is another option for a company like ST .. but higher quality
+<katsmeow-afk> <blink>
+<nmz787> katsmeow-afk: tell me more about what you want to do
+<nmz787> delinquentme: i guess, ST probably has a wider product range, but yeah they both make processors
+<katsmeow-afk> use the propchip like 8 cpus, with 32bit io per chip, by muxing the real world as the chip sees it
+<katsmeow-afk> delinquentme, ST doesn't make Parallax's propellor cpu
+<katsmeow-afk> it's not amatterof uality even
+<nmz787> delinquentme: TI, ST, Parallax, MicroChip, freescale, intel, amd, cypress
+<katsmeow-afk> it all depends if they make a cpu that will do what you want
+<delinquentme> Hmmm
+<nmz787> and also if they're based in US or not
+<delinquentme> so you can get CPUs which do what you want
+<nmz787> that generally tells of their support and doc quality
+<delinquentme> or large ones which you can just flash to do what you want?
+<nmz787> the bigger they are, the harder to set up electronically and code-environment wise
+<delinquentme> the bigger?
+<delinquentme> you mean the more complex the CPU is?
+<nmz787> yeah, like the panda/beagle boards use OMAP
+<nmz787> they have two cores that are diff architecture, and 10s of peripherals
+<nmz787> need DDR ram, tons of caps, diff power supply levels
+<nmz787> yeah, CPU complexity as well as onboard peripherals and req offboard peripherals
+<delinquentme> so like something like this: http://www.ebay.com/itm/PARALLAX-P8X32A-Propeller-QuickStart-Board-/110852456328?_trksid=p3284.m263&_trkparms=algo%3DSIC%26its%3DI%26itu%3DUCI%252BIA%252BUA%252BFICS%252BUFI%26otn%3D21%26pmod%3D110856567956%26ps%3D54#ht_603wt_1398
+<delinquentme> that I would just flash with new code and have it run that shit
+<nmz787> just to get beagle/panda setup in dev environment takes a lot of time reading through 1000 page PDFs for specific bits in special registers to set
+<katsmeow-afk> just throw attinys at it
+<delinquentme> what?
+<delinquentme> really?
+<delinquentme> thats gay
+<nmz787> propeller is as easy as arduino to get running, download one zip from parallax, and plug into RS232/USB-Serial
+<nmz787> beagle/panda of course have communities, so  a lot of that setup has been done
+<delinquentme> arduino is probably the biggest community right?
+<nmz787> but when you want to toggle I/O pins from embedded linux on the beagleboard, or use the raspberry pi's camera (parallel I/O) port... you gonna have fun digging into huge docs
+<delinquentme> the pi has an onboard camera?
+<nmz787> unless someone else 'beats' you to it!~
+<nmz787> no, but it has a port
+<delinquentme> ohhh ic ic
+<delinquentme> theres sooo much complexity in these chips
+<delinquentme> but like for most operations you dont need to hit upon most of it huh
+<delinquentme> um whats a brownout?
+<nmz787> loss of power
+<nmz787> not enough current supplied
+<nmz787> so shit dies randomly
+<delinquentme> http://www.ebay.com/itm/1pcs-new-Development-Board-KIT-ATMEL-AVR-ATMEGA128-Mega128-WL-/320808718559?_trksid=p3284.m263&_trkparms=algo%3DSIC%26its%3DI%26itu%3DUCI%252BIA%252BUA%252BFICS%252BUFI%26otn%3D21%26pmod%3D110856567956%26ps%3D54#ht_2519wt_1398
+<delinquentme> thats a circus.
+<nmz787> lol
+<kanzure> i wonder if i could buy a circus on ebay
+<delinquentme> ^
+<delinquentme> http://www.instructables.com/answers/Is-there-a-cheaper-alternative-to-arduino/
+<delinquentme> this!
+<delinquentme> can you really buy one of those chips and basically get a working arduino for 5 bucks?
+<delinquentme> found one for 8
+<delinquentme> what specifically does "arduino compatible circuit" mean
+<delinquentme> can I flash arduino code onto it and run it like the $60 dollar version?
+<delinquentme> bc that'd be effinf swell
+<nmz787> arduino is just the IDE and community
+<nmz787> period
+<nmz787> its also a dev board
+<nmz787> as someone said earlier, you can use attiny chips
+<nmz787> they are also AVR arch
+<nmz787> and cost about $2
+<nmz787> the least you need to get them running is an lm317 and some caps
+<delinquentme> so effectively the code is out there
+<delinquentme> as well as the schematics
+<delinquentme> and while they're not going to be as pretty
+<delinquentme> they'll run the same code and do exactly the same shit
+<delinquentme> save for the switches and LEds which arent included in the stripped out versions
+<nmz787> basically
+<nmz787> you should use a crystal too, if you're doing anything time dependent
+<nmz787> but yeah, basically what you said
+
+
+http://tom-itx.dyndns.org:81/~webpage/index.php
+
+
+
+
+
+
+
+

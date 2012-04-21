@@ -1,0 +1,34 @@
+http://www.amazon.com/Dispensing-Needle-Blunt-Tip-1-1/dp/B001QRZ31C/ref=pd_sbs_indust_3
+
+
+Solenoids
+http://www.ledex.com/miniature-solenoids/miniature-solenoids.html?gclid=COSaqdPWh6sCFR9y5QodhBiG0g
+http://www.guardian-electric.com/DC_Tubular_Solenoids.htm
+
+
+
+
+In its current state the LH002 is very much a general high throughput system. It is cheap and modular and I plan to design additional features per the requests of those using the system.
+
+The concept is to allow it to be expanded to match any throughput need. The primary unit of the machine is a single 8 channel pipette designed specifically to be stacked like server blades.
+
+Features:
+- Peristaltic pump @ 5uL accuracy
+- Automated pipette tip swapping
+- Accepts pipette tip heights from 1" to 3"
+- Aspirate / Dispense
+- Capacity for up to 10 blades per machine ( individual blades are the teal rectangles... Attached images are of a 4 blade system )
+    - Throughput can be increased simply by adding additional blades.
+- Each blade can be dedicated to dispense a single liquid OR as mixing channel 
+    - Costs on disposables are lowered through dedicated function
+    - Throughput is increased through this same dedicated function
+- Current LH002 unit is capable of 10 blades
+- Multiple units can be stitched together for as much liquid handling as needed
+- Control software is wholly OS agnostic ( control server on a single machine )
+
+
+I'm not too sure how deep into the architecture you guys are. But this machine is very much so built specifically to be tweaked, modified and tuned for specific applications.
+
+If you'd like to dig into the protocols and the nitty gritty let me know!
+
+Best of luck!

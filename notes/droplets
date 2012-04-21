@@ -1,0 +1,17 @@
+http://answers.yahoo.com/question/index?qid=20080926102209AAwwJKD
+
+
+The mass of a drop of water, m, hanging from a capiliary tube of radius a may be estimated by:
+
+m = (2π a γ cosθ) / g
+
+where:
+γ is the surface tension of water = 72 x 10^-3 N m-¹ (at 25 ˚C in air)
+θ is the water-glass contact angle ~ 14˚
+g is the acceleration due to gravity 9.81 kg m s-²
+
+the volume of the water droplet, V = m / ρ where ρ is density of water = 997 kg m-³ (at 25 ˚C).
+
+Therefore V = (2π a γ cosθ) / ρg.
+
+For a dropper of radius a = 2 mm, subsituting gives V ~ 1 x 10^-7 m³ or 0.1 cm³.
